@@ -725,6 +725,18 @@
     } :command];
 }
 
+- (void)isLocationEnabled: (CDVInvokedUrlCommand*)command {
+    [self _handleCallSafely:^CDVPluginResult *(CDVInvokedUrlCommand *command) {
+
+        BOOL isEnabled = [CLLocationManager locationServicesEnabled];
+        
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:isEnabled];
+        [result setKeepCallbackAsBool:YES];
+        return result;
+        
+    } :command];
+}
+
 - (void)enableBluetooth: (CDVInvokedUrlCommand*)command {
     [self _handleCallSafely:^CDVPluginResult *(CDVInvokedUrlCommand *command) {
         
